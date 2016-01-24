@@ -17,7 +17,7 @@ import com.glodon.model.Page;
 import com.glodon.model.QueryEntity;
 
 /**
- * ËùÓĞDaoµÄ¸¸Àà£¬Ìá¹©Ò»Ğ©µ×²ãµÄÍ¨ÓÃ·½·¨£¬¼ò»¯Ã¿¸ö×ÓÀà
+ * æ‰€æœ‰Daoçš„çˆ¶ç±»ï¼Œæä¾›ä¸€äº›åº•å±‚çš„é€šç”¨æ–¹æ³•ï¼Œç®€åŒ–æ¯ä¸ªå­ç±»
  * 
  * @author sucg
  * @date 2016.1.17
@@ -68,12 +68,12 @@ public class BaseDao<T>{
 		Criteria criteria = null;
 		criteria = session.createCriteria(c).add(Example.create(example));
 
-		if (page != null) {// ½øĞĞ·ÖÒ³
+		if (page != null) {// è¿›è¡Œåˆ†é¡µ
 			criteria.setMaxResults(page.getPageSize()).setFirstResult(
 					page.getPageSize() * (page.getNowPage() - 1));
 		}
 
-		if (groupFieldName != null && groupFieldName.length() > 0) {// ·Ö×é
+		if (groupFieldName != null && groupFieldName.length() > 0) {// åˆ†ç»„
 			if (groupFieldName.contains("group by")) {
 				groupFieldName = groupFieldName.replace("group by", "");
 			}
@@ -81,8 +81,8 @@ public class BaseDao<T>{
 					.trim()));
 		}
 
-		if (orderFieldName != null && orderFieldName.trim().length() > 0) {// ½øĞĞÅÅĞò
-			if (orderFieldName.contains("desc")) {// µ¹Ğò
+		if (orderFieldName != null && orderFieldName.trim().length() > 0) {// è¿›è¡Œæ’åº
+			if (orderFieldName.contains("desc")) {// å€’åº
 				orderFieldName = orderFieldName.replace("desc", "");
 				criteria.addOrder(Order.desc(orderFieldName.trim()));
 			} else {
@@ -103,7 +103,7 @@ public class BaseDao<T>{
 		if (session == null)
 			return null;
 
-		if (orderFieldName != null && orderFieldName.trim().length() > 0) {// ÅÅĞò
+		if (orderFieldName != null && orderFieldName.trim().length() > 0) {// æ’åº
 			if (!orderFieldName.contains("order by")) {
 				hql.append(" order by " + orderFieldName.trim());
 			} else {
@@ -111,7 +111,7 @@ public class BaseDao<T>{
 			}
 		}
 
-		if (groupFieldName != null && groupFieldName.trim().length() > 0) {// ·Ö×é
+		if (groupFieldName != null && groupFieldName.trim().length() > 0) {// åˆ†ç»„
 			if (!groupFieldName.contains("group by")) {
 				hql.append(" group by " + groupFieldName.trim());
 			} else {
@@ -130,14 +130,14 @@ public class BaseDao<T>{
 			}
 		}
 		System.out.println(hql.toString());
-		Query qry = session.createQuery(hql.toString());// ²ÎÊıÉèÖÃ
+		Query qry = session.createQuery(hql.toString());// å‚æ•°è®¾ç½®
 		if (queryEntity != null && queryEntity.getValues() != null && queryParamCount > 0) {
 			for (int i = 0; i < queryParamCount; i++) {
 				qry.setParameter(i, queryEntity.getValues()[i]);
 			}
 		}
 
-		if (page != null) {// ·ÖÒ³´¦Àí
+		if (page != null) {// åˆ†é¡µå¤„ç†
 			int start = (page.getNowPage() - 1) * page.getPageSize();
 			qry.setFirstResult(start);
 			qry.setMaxResults(page.getPageSize());

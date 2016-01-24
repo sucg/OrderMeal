@@ -16,6 +16,16 @@
 	http://www.springframework.org/schema/context              
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+	<!--  
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql://aerofriends.gotoftp1.com:3306/aerofriends">
+		</property>
+		<property name="username" value="aerofriends"></property>
+		<property name="password" value="scxzxgqkt"></property>
+	</bean>
+	-->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
@@ -55,12 +65,19 @@
 	<!-- DAO -->
 	<bean id="baseDao" class="com.glodon.dao.BaseDao"></bean>
 	<bean id="menuDao" class="com.glodon.dao.MenuDao"></bean>
-
+	<bean id="orederinfoDao" class="com.glodon.dao.OrderinfoDao"></bean>
+	<bean id="userinfoDao" class="com.glodon.dao.UserinfoDao"></bean>
+	
 	<!-- Service -->
 	<bean id="baseService" class="com.glodon.service.BaseService"></bean>
 	<bean id="menuManageService" class="com.glodon.service.MenuManageService"></bean>
+	<bean id="orderMealService" class="com.glodon.service.OrderMealService"></bean>
+ 	<bean id="userinfoManageService" class="com.glodon.service.UserinfoManageService"></bean>
+ 	
 	<!-- controller -->
 	<bean id="baseController" class="com.glodon.controller.BaseController"></bean>
+	<bean id="indexController" class= "com.glodon.controller.IndexController"></bean>
+	<bean id="orderMealController" class="com.glodon.controller.OrderMealController"></bean>
 
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager"
@@ -80,7 +97,7 @@
 	<!--  配置参与事务的类 -->
 	<aop:config>
 		<aop:pointcut id="allServiceMethod"
-			expression="execution(* com.glodon.dao.*.*(..))" />
+			expression="execution(* com.glodon.service.*.*(..))" />
 		<aop:advisor pointcut-ref="allServiceMethod" advice-ref="serviceAdvice" />
 	</aop:config>
 

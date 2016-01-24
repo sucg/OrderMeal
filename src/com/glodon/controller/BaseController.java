@@ -5,18 +5,16 @@ import org.springframework.stereotype.Controller;
 
 import com.glodon.service.MenuManageService;
 import com.glodon.service.OrderMealService;
+import com.glodon.service.UserinfoManageService;
 
 @Controller
 public class BaseController {
 	
-//	@Autowired
-//	private OrderMealService orderMealService;
-//	
 	@Autowired
 	private OrderMealService orderMealService;
 	
-//	@Autowired
-//	private UserinfoManageService userinfoManageService;
+	@Autowired
+	private UserinfoManageService userinfoManageService;
 	
 	@Autowired
 	private MenuManageService menuManageService;
@@ -44,6 +42,15 @@ public class BaseController {
 
 	public void setOrderMealService(OrderMealService orderMealService) {
 		this.orderMealService = orderMealService;
+	}
+
+	public UserinfoManageService getUserinfoManageService() {
+		return userinfoManageService;
+	}
+
+
+	public void setUserinfoManageService(UserinfoManageService userinfoManageService) {
+		this.userinfoManageService = userinfoManageService;
 	}
 	
 }
