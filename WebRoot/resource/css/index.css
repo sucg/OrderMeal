@@ -1,0 +1,56 @@
+#northRegion {
+	height: 60px;
+	background-color: #B3DFDA;
+	padding: 10px;
+}
+
+#westRegion {
+	width: 150px;
+	padding: 10px;
+}
+
+#southRegion {
+	height: 50px;
+	background: #A9FACD;
+	padding: 10px;
+}
+
+#eastRegion {
+	width: 400px;
+	padding: 0px;
+}
+
+#nav-west li {
+	display: block;
+	padding: 5px 0;
+}
+
+#title{
+	padding: 15px 10px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+#edit-form {
+	margin: 20px auto;
+	padding: 0px auto, 0px auto;
+	text-align: center;
+}
+
+.edit-form-title {
+	text-align:center;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 10px 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+.edititem {
+	padding-top: 5px;
+}
+
+.edititem label {
+	display: inline-block;
+	width: 40px;
+}
