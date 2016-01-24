@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.glodon.dao.MenuDao;
 import com.glodon.dao.OrderinfoDao;
+import com.glodon.dao.UserinfoDao;
 
 public class BaseService {
 	
 	@Autowired
 	private MenuDao menuDao;
-//	@Autowired
-//	private UserinfoDao userinfoDao;
+	@Autowired
+	private UserinfoDao userinfoDao;
 	@Autowired
 	private OrderinfoDao orderinfoDao;
 	
@@ -28,6 +29,12 @@ public class BaseService {
 	}
 	public void setOrderinfoDao(OrderinfoDao orderinfoDao) {
 		this.orderinfoDao = orderinfoDao;
+	}
+	public UserinfoDao getUserinfoDao() {
+		return userinfoDao;
+	}
+	public void setUserinfoDao(UserinfoDao userinfoDao) {
+		this.userinfoDao = userinfoDao;
 	}
 
 }

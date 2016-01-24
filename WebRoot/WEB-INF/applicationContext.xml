@@ -66,11 +66,13 @@
 	<bean id="baseDao" class="com.glodon.dao.BaseDao"></bean>
 	<bean id="menuDao" class="com.glodon.dao.MenuDao"></bean>
 	<bean id="orederinfoDao" class="com.glodon.dao.OrderinfoDao"></bean>
+	<bean id="userinfoDao" class="com.glodon.dao.UserinfoDao"></bean>
 	
 	<!-- Service -->
 	<bean id="baseService" class="com.glodon.service.BaseService"></bean>
 	<bean id="menuManageService" class="com.glodon.service.MenuManageService"></bean>
 	<bean id="orderMealService" class="com.glodon.service.OrderMealService"></bean>
+ 	<bean id="userinfoManageService" class="com.glodon.service.UserinfoManageService"></bean>
  	
 	<!-- controller -->
 	<bean id="baseController" class="com.glodon.controller.BaseController"></bean>
