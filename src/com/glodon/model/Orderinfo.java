@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "orderinfo")
 public class Orderinfo implements Serializable {
 
-	// close代表关闭，不可以编辑，open代表开放，可以编辑
+	// close浠ｈ〃鍏抽棴锛屼笉鍙互缂栬緫锛宱pen浠ｈ〃寮�鏀撅紝鍙互缂栬緫
 	//public static final int CLOSE = 0, OPEN = 1;
 	
 	@Id
