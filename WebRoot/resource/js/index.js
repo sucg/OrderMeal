@@ -3,16 +3,6 @@ function setBaseURL(url){
 	baseURL = url;
 }
 
-function hideDialog(){
-	$('#edit-dlg').hide();
-	$('#edit-dlg-button').hide();
-}
-
-function showDialog(){
-	$('#edit-dlg').show();
-	$('#edit-dlg-button').show();
-}
-
 /**
  * DataGrid删除行操作
  * @param {Object} grid
