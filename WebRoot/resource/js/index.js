@@ -233,7 +233,7 @@ function initOrderinfoDataGrid(){
 	        }
 	    } ]], toolbar : [ 
 	    {
-	        text : '刷新', iconCls : 'icon-ok',
+	        text : '刷新', iconCls : 'icon-reload',
 	        handler : function ()
 	        {
 	            $('#orderinfo-datagrid').datagrid('reload');
