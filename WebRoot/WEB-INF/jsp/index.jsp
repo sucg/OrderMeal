@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page import="com.glodon.model.Userinfo"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
@@ -43,11 +44,52 @@
 <script type="text/javascript"
 			src="<%=basePath%>resource/js/index.js">
 </script>
-
+		
 		<body class="easyui-layout">
 			<div id="northRegion" data-options="region:'north',border:false">
 				<div id="title">OE大区湘菜点餐系统</div>
-
+		
+		<div id="logn-area">
+		
+		<c:if test="${empty sessionScope.userinfo}"> 
+			<a id="login-dlg-logout" href="javascript:void(0)" class="easyui-linkbutton"  iconcls="icon-man" onclick="$('#login-dlg').form('clear');$('#login_message').text('');$('#login-dlg').dialog('open')">登录</a>
+			<a id="login-dlg-logout" href="javascript:void(0)" class="easyui-linkbutton"  iconcls="icon-save">注册</a>
+		</c:if>
+		<c:if test="${not empty sessionScope.userinfo}">
+			<span>
+				欢迎${sessionScope.userinfo.name}！
+			</span>
+			<a id="login-dlg-logout" href="javascript:void(0)" class="easyui-linkbutton"  iconcls="icon-save" onclick="logout(${sessionScope.userinfo.id})">注销</a>
+		</c:if>
+		<!-- end logn-area -->
+		</div>	
+			
+	 	<div id="login-dlg" buttons="#login-dlg-button" class="easyui-dialog" title="登录" 
+	 		data-options="iconCls:'icon-man',resizable:false,modal:true,width: 350, height: 210,closed: true,
+	    cache: false"> 
+			 
+			<form id="login-form" method="post" action="<%=basePath %>index/login">
+				<div class="edititem">
+			        <label for="description" >用户名:</label>
+			        <input class="easyui-validatebox" type="text" name="name" required="true"></input>
+			    </div>
+			    <div class="edititem">
+			        <label for="price">密码:</label>
+			        <input class="easyui-validatebox" type="password" name="password" required="true"></input>
+			    </div>
+			     <div class="edititem">
+			     	<label></label>
+			        <span id="login_message"></span>
+			    </div> 
+			</form>
+		
+		</div>
+				
+				<div id="login-dlg-button">
+					 <a id="login-dlg-login" href="javascript:void(0)" class="easyui-linkbutton"  iconcls="icon-ok" onclick="login($('#login-form'), $('#login_message'))">确定</a> 
+        				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#login-dlg').dialog('close')"
+            			iconcls="icon-cancel">取消</a> 
+				</div> 
 				<!-- end northRegion-->
 			</div>
 			<div id="westRegion"
@@ -90,7 +132,7 @@
 					 <div class="edit-form-title"> 
 				           信息编辑 
 				       </div> 
-					<form id="edit-form" action="post">
+					<form id="edit-form" method="post">
 						<input  type="hidden" name="id" />
 						<div class="edititem">
 					        <label for="description" >名称:</label>

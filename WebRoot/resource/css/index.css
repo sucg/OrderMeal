@@ -29,6 +29,8 @@
 	padding: 15px 10px;
 	font-size: 25px;
 	font-weight: bold;
+	width: auto;
+	float: left;
 }
 
 #edit-form {
@@ -54,3 +56,38 @@
 	display: inline-block;
 	width: 40px;
 }
+
+#logn-area{
+	text-align:right;
+	height: auto;
+	width: 200px;
+	float: right;
+	margin: 5px 5px auto auto;
+	padding: 10px;
+	border: 0px;
+}
+
+#logn-area a{
+	margin-right: 10px;
+}
+
+#login-form {
+	margin: 20px auto;
+	padding: 0px auto, 0px auto;
+	text-align: center;
+}
+
+#login-form label{
+	display: inline-block;
+	width: 60px;
+	text-align: left;
+}
+
+#login_message{
+	display: inline-block;
+	color: red;
+	text-align: left;
+	width: 150px;
+	margin-top: 10px;
+}
+

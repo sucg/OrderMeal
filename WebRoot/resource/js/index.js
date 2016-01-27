@@ -305,3 +305,39 @@ function initMainDataGrid(){
 	
 }
 
+function login(formObj, messageObj){
+	isValid = formObj.form('validate');
+	if (!isValid){
+		messageObj.text('请填写用户名和密码！');
+	}
+	
+	formObj.form('submit', {
+    	onSubmit: function(){
+        	messageObj.text('');
+    	},
+    	success:function(data){
+    		var dataObj = eval("("+data+")");
+    		if (dataObj.result)
+    		{
+    			window.location.reload();
+    			$('#login-dlg').dialog('close');
+    		}
+        	messageObj.text(dataObj.message);
+    }
+});
+
+}
+
+function logout(id){
+	$.ajax({
+		url: baseURL + 'index/logout',
+		type: "post",
+	 	contentType: "application/json", 
+	    dataType: "json",  
+	    data: id, 
+	    success: function(data){
+	   		 window.location.reload();
+		}
+	});
+}
+
