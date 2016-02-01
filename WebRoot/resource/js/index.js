@@ -35,7 +35,7 @@ function deleterow(grid, urlstr){
 			//alert(rowstr);
 			//服务端删除数据
 			$.ajax({
-				url: urlstr,
+				url: baseURL + urlstr,
 				type: 'post',
 				contentType: "application/json", 
 			    dataType: "json",  
@@ -205,12 +205,13 @@ function initOrderinfoDataGrid(){
 		    fit : true, 
 		    checkOnSelect : true, 
 		    selectOnCheck : true, 
-		    pagePosition : 'bottom', 
+		    pagination: false,
 		    rownumbers : true, 
-		    remoteSort : false, 
+		   	remoteSort:false,
 		    showFooter : true, 
 		    striped : true, 
-		    idField : "id", 
+		    idField : "id",
+		    singleSelect:false,
 		    columns : [[ {
 		    field : '', 
 		    checkbox : true
@@ -225,6 +226,15 @@ function initOrderinfoDataGrid(){
 	        title : '价格(元)', field : 'menu.price', align : 'right', sortable : 'true', 
 	        formatter : function (value, row, index) {
 	            return row.menu.price;
+	        }
+	    },{
+	    	title:'点餐人', field : 'userinfo.name',align : 'left', sortable : 'true', 
+	    	formatter : function (value, row, index) {
+				if (row.userinfo != null) {
+					return row.userinfo.name;
+				}else {
+					return "";
+				}	
 	        }
 	    },{
 	        title : '备注', field : 'menu.remark', sortable : 'false',
@@ -243,7 +253,7 @@ function initOrderinfoDataGrid(){
 	        text : '删除', iconCls : 'icon-remove',
 	        handler : function ()
 	        {
-	            deleterow('#orderinfo-datagrid', baseURL + 'ordermeal/delete');
+	            deleterow('#orderinfo-datagrid', 'ordermeal/delete');
 	        }
 	    }] 
 	});
@@ -274,33 +284,12 @@ function initMainDataGrid(){
      columns : [[
           {field: '', checkbox:true},
           {title:'id', field:'id', hidden:true},
-          {title:'名称',field:'description', sortable:'true',
-          	editor:{type:'validatebox',options:{required:true, validType:'text',  
-                }}
+          {title:'名称',field:'description', sortable:'true'
           },
-          {title:'价格(元)',field:'price', align: 'right', sortable:'true',
-          	editor:{type:'validatebox',options:{required:true, valueField:'price',  
-                textField:'name2'  }}
+          {title:'价格(元)',field:'price', align: 'right', sortable:'true'
           },
           {title:'备注',field:'remark', sortable:'false'}
-      ]],
-      toolbar : [{
-    		text:'提交',
-			iconCls:'icon-ok',
-			handler:function(){submitrow();}
-		},{
-			text:'添加',
-			iconCls:'icon-add',
-			handler:function(){insertrow();}
-		},{
-			text:'修改',
-			iconCls:'icon-edit',
-			handler:function(){editrow();}
-		},{
-			text:'删除',
-			iconCls:'icon-remove',
-			handler:function(){deleterow('#maindata-datagrid', baseURL + 'menu/delete');}
-		}]
+      ]]
 	}); 
 	
 }
@@ -339,5 +328,14 @@ function logout(id){
 	   		 window.location.reload();
 		}
 	});
+}
+
+function datagridToolbarSearch(gridObj, ipt){
+	if (ipt.val().trim() == "") return;
+	//alert( ipt.val());
+	
+	gridObj.datagrid('load',{
+        'description':ipt.val().trim() 
+    });
 }
 

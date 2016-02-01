@@ -6,6 +6,7 @@ import com.glodon.model.Menu;
 import com.glodon.model.Orderinfo;
 import com.glodon.model.Page;
 import com.glodon.model.QueryEntity;
+import com.glodon.model.Userinfo;
 
 public class OrderMealService extends BaseService {
 
@@ -43,10 +44,11 @@ public class OrderMealService extends BaseService {
 		this.getOrderinfoDao().save(orderinfo);
 	}
 
-	public void orderMeal(List<Menu> menuList) {
+	public void orderMeal(List<Menu> menuList, Userinfo userinfo) {
 		for (Menu menu : menuList) {
 			Orderinfo orderinfo = new Orderinfo();
 			orderinfo.setMenu(menu);
+			orderinfo.setUserinfo(userinfo);
 			this.getOrderinfoDao().save(orderinfo);
 		}
 	}

@@ -125,9 +125,20 @@
 			</div>
 			<div id="centerRegion" data-options="region:'center'">
 
-				<table id="maindata-datagrid">
+				<table id="maindata-datagrid" toolbar="#maindata-toolbar">
+				
 				</table>
 				
+				<div id="maindata-toolbar" style="padding:3px">
+				    <a class="easyui-linkbutton" iconCls="icon-ok" onclick="submitrow();">提交</a>
+				    <a class="easyui-linkbutton" iconCls="icon-add" onclick="insertrow();">添加</a>
+				    <a class="easyui-linkbutton" iconCls="icon-edit" onclick="editrow();">修改</a>
+				    <a class="easyui-linkbutton" iconCls="icon-remove" onclick="deleterow($('#maindata-datagrid'), 'menu/delete');">删除</a>
+				    <span style="width: 10px;"></span>
+				    <input id="search" type="text" style="width: 150px;height: 23px;border: 1px #CCC solid" onkeyup="datagridToolbarSearch($('#maindata-datagrid'), $(this));"/>
+					<a class="easyui-linkbutton"  onclick="datagridToolbarSearch($('#maindata-datagrid'), $('#search'));">搜    索</a>
+				</div>
+								
 				<div id="edit-dlg" buttons="#edit-dlg-button"> 
 					 <div class="edit-form-title"> 
 				           信息编辑 

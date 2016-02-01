@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.annotations.Parameter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.glodon.model.Menu;
 import com.glodon.model.Orderinfo;
+import com.glodon.model.Userinfo;
 
 @Controller
 @RequestMapping("/ordermeal")
@@ -31,8 +35,9 @@ public class OrderMealController extends BaseController {
 
 	@RequestMapping("/order")
 	@ResponseBody
-	public Map<String, Object> orderMeal(@RequestBody Menu[] menus) {
+	public Map<String, Object> orderMeal(@RequestBody Menu[] menus, HttpSession session) {
 		List<Menu> menuList = new ArrayList<Menu>();
+		Userinfo userinfo = (Userinfo) session.getAttribute("userinfo");
 		StringBuffer message = new StringBuffer(" ");
 		boolean isSuccess = true;
 		boolean isOrdered = false;
@@ -47,7 +52,7 @@ public class OrderMealController extends BaseController {
 		}
 		
 		if (isSuccess) {
-			this.getOrderMealService().orderMeal(menuList);
+			this.getOrderMealService().orderMeal(menuList, userinfo);
 		}
 
 		Map<String, Object> result = new HashMap<String, Object>();
