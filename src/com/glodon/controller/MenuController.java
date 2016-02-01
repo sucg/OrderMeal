@@ -17,8 +17,8 @@ public class MenuController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping("/list")
-	public Map<String, Object> menuList(Integer page, Integer rows){
-		List<Menu> menuList = this.getMenuManageService().showMenuList(page, rows, "");
+	public Map<String, Object> menuList(Integer page, Integer rows, String description){
+		List<Menu> menuList = this.getMenuManageService().showMenuList(page, rows, "", description);
 		Map<String, Object> result = new HashMap<String, Object>();
 		Long count = this.getMenuManageService().getMenuCount();
 		result.put("rows", menuList);
