@@ -20,12 +20,13 @@ public class MenuManageService extends BaseService {
 			page.setNowPage(nowPage);
 			page.setPageSize(pageSize);
 		}
+	
 		QueryEntity queryEntity = null;
 		if (description != null && !description.isEmpty()) {
 			queryEntity = new QueryEntity();
 			queryEntity.setFieldNames(new String[]{"description"});
 			queryEntity.setCaclNames(new String[] { "like" });
-			queryEntity.setValues(new String[] {description});
+			queryEntity.setValues(new String[] {"%" + description + "%"});
 		}
 		return this.getMenuDao().findByPropertiesByPage(queryEntity, page,
 				orderFieldName, "");

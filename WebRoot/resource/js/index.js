@@ -331,11 +331,13 @@ function logout(id){
 }
 
 function datagridToolbarSearch(gridObj, ipt){
-	if (ipt.val().trim() == "") return;
-	//alert( ipt.val());
-	
 	gridObj.datagrid('load',{
         'description':ipt.val().trim() 
     });
 }
 
+function datagridToolbarSearchCancel(gridObj, ipt){
+	if (ipt.val().trim() == "") return;
+	ipt.val('');
+	gridObj.datagrid('load',{});	
+}

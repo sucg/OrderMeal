@@ -137,6 +137,7 @@
 				    <span style="width: 10px;"></span>
 				    <input id="search" type="text" style="width: 150px;height: 23px;border: 1px #CCC solid" onkeyup="datagridToolbarSearch($('#maindata-datagrid'), $(this));"/>
 					<a class="easyui-linkbutton"  onclick="datagridToolbarSearch($('#maindata-datagrid'), $('#search'));">搜    索</a>
+					<a class="easyui-linkbutton"  onclick="datagridToolbarSearchCancel($('#maindata-datagrid'), $('#search'));">取消搜索</a>
 				</div>
 								
 				<div id="edit-dlg" buttons="#edit-dlg-button"> 
