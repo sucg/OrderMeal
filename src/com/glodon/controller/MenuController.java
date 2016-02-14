@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.glodon.model.Menu;
+import com.glodon.model.QueryEntity;
+import com.sun.org.apache.xerces.internal.impl.dv.xs.DecimalDV;
 
 @Controller
 @RequestMapping("/menu")
@@ -20,7 +22,14 @@ public class MenuController extends BaseController {
 	public Map<String, Object> menuList(Integer page, Integer rows, String description){
 		List<Menu> menuList = this.getMenuManageService().showMenuList(page, rows, "", description);
 		Map<String, Object> result = new HashMap<String, Object>();
-		Long count = this.getMenuManageService().getMenuCount();
+		QueryEntity queryEntity = null;
+		if(description != null){
+			queryEntity = new QueryEntity();
+			queryEntity.setFieldNames(new String[]{"description"});
+			queryEntity.setCaclNames(new String[]{"like"});
+			queryEntity.setValues(new String[]{"%" + description + "%"});
+		}
+		Long count = this.getMenuManageService().getMenuCount(queryEntity);
 		result.put("rows", menuList);
 		result.put("total", count);
 		return result;

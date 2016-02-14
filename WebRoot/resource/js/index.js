@@ -330,12 +330,20 @@ function logout(id){
 	});
 }
 
-function datagridToolbarSearch(gridObj, ipt){
+function datagridToolbarSearch(event, gridObj, ipt){
 	if (ipt.val().trim() == "") return;
-	//alert( ipt.val());
-	
+
+	if (event && event.keyCode != 13) return;
+
 	gridObj.datagrid('load',{
         'description':ipt.val().trim() 
     });
 }
+
+function cancelDatagridToolbarSearch(gridObj, ipt){
+	ipt.val("");
+	gridObj.datagrid('load',{});
+}
+
+
 

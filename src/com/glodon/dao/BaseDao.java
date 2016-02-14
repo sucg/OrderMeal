@@ -159,6 +159,10 @@ public class BaseDao<T>{
 	}
 	
 	public long getTotlaCount(QueryEntity queryEntity) {
+		if (queryEntity == null) {
+			return getTotlaCount();
+		}
+		
 		Session session = this.sessionFactory.getCurrentSession();
 		StringBuffer hql = new StringBuffer("select count (*) from " + getEntityName() +" where 1=1 ");
 		for (int i = 0; i < queryEntity.getFieldNames().length; i++) {

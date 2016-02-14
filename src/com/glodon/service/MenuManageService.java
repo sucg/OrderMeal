@@ -25,14 +25,14 @@ public class MenuManageService extends BaseService {
 			queryEntity = new QueryEntity();
 			queryEntity.setFieldNames(new String[]{"description"});
 			queryEntity.setCaclNames(new String[] { "like" });
-			queryEntity.setValues(new String[] {description});
+			queryEntity.setValues(new String[] {"%" + description + "%"});
 		}
 		return this.getMenuDao().findByPropertiesByPage(queryEntity, page,
 				orderFieldName, "");
 	}
 
-	public Long getMenuCount() {
-		return this.getMenuDao().getTotlaCount();
+	public Long getMenuCount(QueryEntity queryEntity) {
+		return this.getMenuDao().getTotlaCount(queryEntity);
 	}
 
 	public void deleteMenu(Menu menu) {
