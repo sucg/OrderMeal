@@ -20,6 +20,7 @@ public class MenuManageService extends BaseService {
 			page.setNowPage(nowPage);
 			page.setPageSize(pageSize);
 		}
+	
 		QueryEntity queryEntity = null;
 		if (description != null && !description.isEmpty()) {
 			queryEntity = new QueryEntity();

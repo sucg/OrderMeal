@@ -345,5 +345,3 @@ function cancelDatagridToolbarSearch(gridObj, ipt){
 	gridObj.datagrid('load',{});
 }
 
-
-
