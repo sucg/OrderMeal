@@ -332,9 +332,10 @@ function logout(id){
 
 function datagridToolbarSearch(event, gridObj, ipt){
 	if (ipt.val().trim() == "") return;
-
-	if (event && event.keyCode != 13) return;
-
+	
+	// 在输入的时候，仅仅按回车键起作用
+	if (event != null && event.type == 'keyup' && event.keyCode != 13) return;
+	
 	gridObj.datagrid('load',{
         'description':ipt.val().trim() 
     });

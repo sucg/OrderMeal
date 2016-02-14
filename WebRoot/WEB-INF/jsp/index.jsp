@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@page import="com.glodon.model.Userinfo"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -139,7 +140,7 @@
 					<a class="easyui-linkbutton"  onclick="datagridToolbarSearch(event, $('#maindata-datagrid'), $('#search'));">搜    索</a>
 					<a class="easyui-linkbutton"  onclick="cancelDatagridToolbarSearch($('#maindata-datagrid'), $('#search'));">取消搜索</a>
 				</div>
-								
+							
 				<div id="edit-dlg" buttons="#edit-dlg-button"> 
 					 <div class="edit-form-title"> 
 				           信息编辑 
