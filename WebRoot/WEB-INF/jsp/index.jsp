@@ -132,9 +132,11 @@
 				
 				<div id="maindata-toolbar" style="padding:3px">
 				    <a class="easyui-linkbutton" iconCls="icon-ok" onclick="submitrow();">提交</a>
-				    <a class="easyui-linkbutton" iconCls="icon-add" onclick="insertrow();">添加</a>
-				    <a class="easyui-linkbutton" iconCls="icon-edit" onclick="editrow();">修改</a>
-				    <a class="easyui-linkbutton" iconCls="icon-remove" onclick="deleterow($('#maindata-datagrid'), 'menu/delete');">删除</a>
+				    <c:if test="${sessionScope.userinfo.role==1}">
+					    <a class="easyui-linkbutton" iconCls="icon-add" onclick="insertrow();">添加</a>
+					    <a class="easyui-linkbutton" iconCls="icon-edit" onclick="editrow();">修改</a>
+					    <a class="easyui-linkbutton" iconCls="icon-remove" onclick="deleterow($('#maindata-datagrid'), 'menu/delete');">删除</a>
+				    </c:if>
 				    <span style="margin-left: 10px;"></span>
 				    <input id="search" type="text" style="width: 150px;height: 23px;border: 1px #CCC solid" onkeyup="datagridToolbarSearch(event, $('#maindata-datagrid'), $('#search'));"/>
 					<a class="easyui-linkbutton"  onclick="datagridToolbarSearch(event, $('#maindata-datagrid'), $('#search'));">搜    索</a>

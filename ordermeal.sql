@@ -1,5 +1,5 @@
-﻿# Host: 127.0.0.1  (Version: 5.5.25a)
-# Date: 2016-01-21 21:17:25
+﻿# Host: 101.200.163.90  (Version: 5.5.48-log)
+# Date: 2016-02-15 17:43:57
 # Generator: MySQL-Front 5.3  (Build 2.28)
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -7,7 +7,7 @@
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE */;
-/*!40101 SET SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */;
+/*!40101 SET SQL_MODE='' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES */;
 /*!40103 SET SQL_NOTES='ON' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS */;
@@ -58,7 +58,7 @@ CREATE TABLE `userinfo` (
 # Data for table "userinfo"
 #
 
-INSERT INTO `userinfo` VALUES (1,'sucg','sucg',1);
+INSERT INTO `userinfo` VALUES (1,'sucg','sucg',0),(2,'admin','admin',1),(3,'liuzb','liuzb',0),(4,'jianghl','jianghl',0),(5,'mengd','mengd',0),(6,'chenj-m','cehnj-m',0),(7,'gaol','gaol',0),(8,'liqb-a','liqb-a',0),(9,'guoxq','guoxq',0),(10,'doux','doux',0),(11,'jinh','jinh',0),(12,'yanxj','yanxj',0),(13,'wangl-aj','wangl-aj',0),(14,'chenb','chenb',0),(15,'liym','liym',0);
 
 #
 # Source for table "orderinfo"
@@ -78,13 +78,13 @@ CREATE TABLE `orderinfo` (
   KEY `userinfoid` (`userinfoid`),
   CONSTRAINT `orderinfo_ibfk_1` FOREIGN KEY (`menuid`) REFERENCES `menu` (`Id`),
   CONSTRAINT `orderinfo_ibfk_2` FOREIGN KEY (`userinfoid`) REFERENCES `userinfo` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 #
 # Data for table "orderinfo"
 #
 
-INSERT INTO `orderinfo` VALUES (42,NULL,NULL,141,NULL,0,0),(43,NULL,NULL,135,NULL,0,0),(44,NULL,NULL,105,NULL,0,0),(45,NULL,NULL,98,NULL,0,0),(46,NULL,NULL,102,NULL,0,0),(47,NULL,NULL,129,NULL,0,0),(48,NULL,NULL,50,NULL,0,0),(49,NULL,NULL,66,NULL,0,0),(50,NULL,NULL,95,NULL,0,0),(51,NULL,NULL,87,NULL,0,0),(52,NULL,NULL,90,NULL,0,0);
+INSERT INTO `orderinfo` VALUES (42,NULL,NULL,141,NULL,0,0),(43,NULL,NULL,135,NULL,0,0),(44,NULL,NULL,105,NULL,0,0),(45,NULL,NULL,98,NULL,0,0),(46,NULL,NULL,102,NULL,0,0),(47,NULL,NULL,129,NULL,0,0),(48,NULL,NULL,50,NULL,0,0),(49,NULL,NULL,66,NULL,0,0),(50,NULL,NULL,95,NULL,0,0),(51,NULL,NULL,87,NULL,0,0),(52,NULL,NULL,90,NULL,0,0),(53,NULL,NULL,26,NULL,0,0);
 
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
