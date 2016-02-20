@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<project name="OrderMeal" default="build" basedir=".">
+<project name="OrderMeal" default="makewar" basedir=".">
 
 	<property name="name" value="OrderMeal" />
 
@@ -28,15 +28,15 @@
 		<mkdir dir="${release.classes.dir}" />
 	</target>
 
+	<target name="clean-build" depends="clean,initdir" />
+	
 	<target name="compile">
 		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" />
 	</target>
 
-	<target name="clean-build" depends="clean,initdir" />
-
 	<target name="build" depends="clean-build,compile" />
 
-	<target name="makewar">
+	<target name="makewar" depends="build">
 		<war destfile="${release.dir}/OrderMeal.war" webxml="${web-inf.dir}/web.xml">
 			<lib dir="${lib.dir}" />
 			<classes dir="${release.classes.dir}" />
