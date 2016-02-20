@@ -27,7 +27,7 @@
 	</target>
 
 	<target name="compile">
-		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="classpath" />
+		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" />
 	</target>
 	
 	<target name="clean-build" depends="clean,initdir"/>
