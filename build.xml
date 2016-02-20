@@ -6,17 +6,19 @@
 
 	<!-- 代码相关路径 -->
 	<property name="src.dir" value="${basedir}/src" />
-	<property name="lib.dir" value="${basedir}/WebRoot/WEB-INF/lib" />
+	<property name="webroot.dir" value="${basedir}/WebRoot" />
+	<property name="web-inf.dir" value="${webroot.dir}/WEB-INF" />
+	<property name="lib.dir" value="${web-inf.dir}/lib" />
 
 	<!-- 编译好的，放在release目录下面 -->
 	<property name="release.dir" value="${basedir}/release" />
 	<property name="release.classes.dir" value="${release.dir}/classes" />
 
-	
+
 	<path id="compile.classpath">
-		<fileset dir="${lib.dir}" includes="**/*.jar"/>
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
 	</path>
-	
+
 	<target name="clean" description="Remove all generated files.">
 		<delete dir="${release.dir}" />
 	</target>
@@ -29,9 +31,20 @@
 	<target name="compile">
 		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" />
 	</target>
-	
-	<target name="clean-build" depends="clean,initdir"/>
-	
-	<target name="build" depends="clean-build,compile"/>
+
+	<target name="clean-build" depends="clean,initdir" />
+
+	<target name="build" depends="clean-build,compile" />
+
+	<target name="makewar">
+		<war destfile="${release.dir}/OrderMeal.war" webxml="${web-inf.dir}/web.xml">
+			<lib dir="${lib.dir}" />
+			<classes dir="${release.classes.dir}" />
+			<webinf dir="${web-inf.dir}" />
+		</war>
+	</target>
+
+
+
 
 </project>
