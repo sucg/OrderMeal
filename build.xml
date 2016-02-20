@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<project name="OrderMeal" default="makewar" basedir=".">
+<project name="OrderMeal" default="build" basedir=".">
 
 	<property name="name" value="OrderMeal" />
 
@@ -29,7 +29,7 @@
 	</target>
 
 	<!-- 新建发布目录基本结构  -->
-	<target name="initdir" description="mkdir">
+	<target name="initReleaseDir" description="mkdir">
 		<mkdir dir="${release.dir}" />
 		<copydir dest="${release.dir}" src="${webroot.dir}" />
 		<!-- 清空release.classes.dir文件夹，不包括自己，通过includes="**/*"实现 ，不加这个，就会删除自己 -->
@@ -37,20 +37,17 @@
 		    <fileset dir="${release.classes.dir}" includes="**/*" />          
 		</delete> 
 	</target>
-
-	<target name="clean-build" depends="clean,initdir" />
 	
+	<!-- 编译java代码-->
 	<target name="compile">
 		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" />
 	</target>
-
-	<target name="build" depends="clean-build,compile" />
-
-	<target name="makewar" depends="build">
+	
+	<!-- 制作成war包 -->
+	<target name="makeWar">
 		<war destfile="${release.dir}/OrderMeal.war" basedir="${release.dir}" />
 	</target>
 
-
-
-
+	<!-- 总build步骤 -->
+	<target name="build" depends="clean,initReleaseDir,compile,makeWar" />
 </project>
