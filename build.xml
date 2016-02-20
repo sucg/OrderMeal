@@ -33,7 +33,7 @@
 		<mkdir dir="${release.dir}" />
 		<copydir dest="${release.dir}" src="${webroot.dir}" />
 		<delete dir="${release.classes.dir}">
-			<fileset>
+			<fileset dir=".">
 				<include name="**/*.*" />
 			</fileset>
 		</delete>
