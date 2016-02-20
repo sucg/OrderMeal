@@ -32,16 +32,16 @@
 	<target name="initdir" description="mkdir">
 		<mkdir dir="${release.dir}" />
 		<copydir dest="${release.dir}" src="${webroot.dir}" />
+		<!-- 清空release.classes.dir文件夹，不包括自己，通过includes="**/*"实现 ，不加这个，就会删除自己 -->
 		<delete includeEmptyDirs="true">  
-		    <fileset dir="${release.classes.dir}" includes="**/*"/>          
+		    <fileset dir="${release.classes.dir}" includes="**/*" />          
 		</delete> 
 	</target>
 
 	<target name="clean-build" depends="clean,initdir" />
 	
 	<target name="compile">
-		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" >
-		</javac>
+		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" />
 	</target>
 
 	<target name="build" depends="clean-build,compile" />
