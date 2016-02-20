@@ -47,11 +47,7 @@
 	<target name="build" depends="clean-build,compile" />
 
 	<target name="makewar" depends="build">
-		<war destfile="${release.dir}/OrderMeal.war" webxml="${web-inf.dir}/web.xml">
-			<lib dir="${lib.dir}" />
-			<classes dir="${release.classes.dir}" />
-			<webinf dir="${web-inf.dir}" />
-		</war>
+		<war destfile="${release.dir}/OrderMeal.war" basedir="${release.dir}" />
 	</target>
 
 
