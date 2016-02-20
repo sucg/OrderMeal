@@ -32,7 +32,11 @@
 	<target name="initdir" description="mkdir">
 		<mkdir dir="${release.dir}" />
 		<copydir dest="${release.dir}" src="${webroot.dir}" />
-		<delete dir="${release.classes.dir}" />
+		<delete dir="${release.classes.dir}">
+			<fileset>
+				<include name="**/*.*" />
+			</fileset>
+		</delete>
 	</target>
 
 	<target name="clean-build" depends="clean,initdir" />
