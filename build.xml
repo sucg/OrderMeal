@@ -12,26 +12,32 @@
 
 	<!-- 编译好的，放在release目录下面 -->
 	<property name="release.dir" value="${basedir}/release" />
-	<property name="release.classes.dir" value="${release.dir}/classes" />
-
-
+	<property name="release.meta-inf.dir" value="${release.dir}/META-INF" />
+	<property name="release.web-inf.dir" value="${release.dir}/WEB-INF" />
+	<property name="release.classes.dir" value="${release.web-inf.dir}/classes" />
+	
+	<!-- 编译时所需要的jar包路径 -->
 	<path id="compile.classpath">
 		<fileset dir="${lib.dir}" includes="**/*.jar" />
 	</path>
 
+	<!-- 删除发布目录 -->
 	<target name="clean" description="Remove all generated files.">
 		<delete dir="${release.dir}" />
 	</target>
 
+	<!-- 新建发布目录  -->
 	<target name="initdir" description="mkdir">
-		<mkdir dir="${release.dir}" />
 		<mkdir dir="${release.classes.dir}" />
+		<mkdir dir="${release.meta-inf.dir}" />
 	</target>
 
 	<target name="clean-build" depends="clean,initdir" />
 	
 	<target name="compile">
 		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" />
+		
+		<!-- 拷贝其他文件 -->
 	</target>
 
 	<target name="build" depends="clean-build,compile" />
