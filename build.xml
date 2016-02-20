@@ -32,7 +32,7 @@
 	<target name="initdir" description="mkdir">
 		<mkdir dir="${release.dir}" />
 		<copydir dest="${release.dir}" src="${webroot.dir}" />
-		<deltree dir="release.classes.dir"/>
+		<delete dir="${release.classes.dir}" />
 	</target>
 
 	<target name="clean-build" depends="clean,initdir" />
