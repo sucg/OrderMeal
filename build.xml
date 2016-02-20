@@ -21,7 +21,7 @@
 	</target>
 
 	<target name="compile">
-		<javac encoding="utf-8" srcdir="${src.dir}" classpathref="compile.classpath" destdir="${webroot.class.dir}" />
+		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" />
 	</target>
 	
 	<target name="clean-build" depends="clean,initdir"/>
