@@ -7,8 +7,10 @@
 	<!-- 代码相关路径 -->
 	<property name="src.dir" value="${basedir}/src" />
 	<property name="webroot.dir" value="${basedir}/WebRoot" />
+	<property name="meta-inf.dir" value="${webroot.dir}/META-INF" />
 	<property name="web-inf.dir" value="${webroot.dir}/WEB-INF" />
 	<property name="lib.dir" value="${web-inf.dir}/lib" />
+	
 
 	<!-- 编译好的，放在release目录下面 -->
 	<property name="release.dir" value="${basedir}/release" />
@@ -26,18 +28,17 @@
 		<delete dir="${release.dir}" />
 	</target>
 
-	<!-- 新建发布目录  -->
+	<!-- 新建发布目录基本结构  -->
 	<target name="initdir" description="mkdir">
-		<mkdir dir="${release.classes.dir}" />
-		<mkdir dir="${release.meta-inf.dir}" />
+		<mkdir dir="${release.dir}" />
+		<copydir dest="${release.dir}" src="${webroot.dir}" />
+		<deltree dir="release.classes.dir"/>
 	</target>
 
 	<target name="clean-build" depends="clean,initdir" />
 	
 	<target name="compile">
 		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" />
-		
-		<!-- 拷贝其他文件 -->
 	</target>
 
 	<target name="build" depends="clean-build,compile" />
