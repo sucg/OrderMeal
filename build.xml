@@ -38,9 +38,8 @@
 	<target name="clean-build" depends="clean,initdir" />
 	
 	<target name="compile">
-		<!-- <javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" >
-			<include name="**/*.java" /> 
-		</javac>  -->
+		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" >
+		</javac>
 	</target>
 
 	<target name="build" depends="clean-build,compile" />
