@@ -40,7 +40,7 @@
 	
 	<!-- 编译java代码-->
 	<target name="compile">
-		<javac encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" />
+		<javac debug="true" encoding="utf-8" srcdir="${src.dir}" destdir="${release.classes.dir}" classpathref="compile.classpath" />
 	</target>
 	
 	<!-- 制作成war包 -->
