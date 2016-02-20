@@ -32,10 +32,8 @@
 	<target name="initdir" description="mkdir">
 		<mkdir dir="${release.dir}" />
 		<copydir dest="${release.dir}" src="${webroot.dir}" />
-		<delete dir="${release.classes.dir}">
-			<fileset dir=".">
-				<include name="**/*.*" />
-			</fileset>
+		<delete file="" dir="${release.classes.dir}">
+			<fileset includes="**/*" />
 		</delete>
 	</target>
 
