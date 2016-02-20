@@ -43,7 +43,7 @@
   </target>
  
   <target name="compile">
-    <javac encoding="utf-8" srcdir="${src.dir}" classpathref="compile.classpath" destdir="${classes.dir}"/>
+    <javac encoding="utf-8" srcdir="${src.dir}" classpathref="compile.classpath" destdir="${webroot.class.dir}"/>
   </target>
  
   <target name="buildWithType" description="Build formal or daily">
