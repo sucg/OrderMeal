@@ -12,8 +12,6 @@
   <property name="src.dir"  value="src"/>
   <property name="resources.dir"  value="resources"/>
   <property name="lib.dir" value="WEB-INF/lib"/>
-  <property name="classes.dir" value="bin"/>
-
  
    <property name="daily" value="daily"/>
    <property name="formal" value="formal"/>
@@ -38,7 +36,6 @@
   </target>
  
   <target name="clean" description="Remove all generated files.">
-    <delete dir="${classes.dir}"/>
     <delete dir="${formal}-${release.dir}"/>
      <delete file="${formal}-${release.file}"/>
      <delete dir="${daily}-${release.dir}"/>
@@ -46,7 +43,6 @@
   </target>
  
   <target name="compile">
-     <mkdir dir="${classes.dir}"/>
     <javac encoding="utf-8" srcdir="${src.dir}" classpathref="compile.classpath" destdir="${classes.dir}"/>
   </target>
  
