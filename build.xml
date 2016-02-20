@@ -1,110 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<project name="OrderMeal" default="build" basedir="." >
+<project name="OrderMeal" default="build" basedir=".">
 
-  <property name="release.dir" value="OrderMeal"/>
-  <property name="release.inf.dir" value="${release.dir}/WEB-INF"/>
-  <property name="release.classes.dir" value="${release.inf.dir}/classes"/>
-  <property name="release.lib.dir" value="${release.inf.dir}/lib"/>
-  <property name="release.file" value="${release.dir}.zip"/>
+	<property name="name" value="OrderMeal" />
 
-  <property name="webroot.dir"  value="WebRoot"/>
-  <property name="webroot.class.dir"  value="WEB-INF/classes"/>
-  <property name="src.dir"  value="src"/>
-  <property name="resources.dir"  value="resources"/>
-  <property name="lib.dir" value="WEB-INF/lib"/>
- 
-   <property name="daily" value="daily"/>
-   <property name="formal" value="formal"/>
+	<!-- 代码相关路径 -->
+	<property name="src.dir" value="${basedir}/src" />
 
-   <!--
-        设置类路径
-    -->
-    <path id="compile.classpath">
-        <fileset dir="${webroot.dir}/${lib.dir}">
-               <exclude name="**/.svn"/>
-               <exclude name="test/"/>
-          </fileset>    
-    </path>
+	<!-- 编译好的，放在release目录下面 -->
+	<property name="release.dir" value="${basedir}/release" />
+	<property name="release.classes.dir" value="${release.dir}/classes" />
 
-  <target name="build"  description="Build this project" depends="clean,compile">
-     <antcall target="buildWithType">
-     <param name="buildtype"  value="${formal}"/>
-     </antcall>
-     <antcall target="buildWithType">
-     <param name="buildtype"  value="${daily}"/>
-     </antcall>
-  </target>
- 
-  <target name="clean" description="Remove all generated files.">
-    <delete dir="${formal}-${release.dir}"/>
-     <delete file="${formal}-${release.file}"/>
-     <delete dir="${daily}-${release.dir}"/>
-     <delete file="${daily}-${release.file}"/>
-  </target>
- 
-  <target name="compile">
-    <javac encoding="utf-8" srcdir="${src.dir}" classpathref="compile.classpath" destdir="${classes.dir}"/>
-  </target>
- 
-  <target name="buildWithType" description="Build formal or daily">
-     <property name="buildtype"  value="formal"/>
-    
-     <copy todir="${buildtype}-${release.classes.dir}">
-          <fileset dir="bin">
-               <exclude name="**/.svn"/>
-               <exclude name="*.properties"/>
-               <exclude name="*.property"/>
-               <exclude name="*.xml"/>
-          </fileset>         
-           <!---从resources/daily或者resources/formal(daily)目录下，拷贝配置文件到classes目录 -->
-          <fileset dir="${resources.dir}/${buildtype}">
-               <include name="log4j.properties"/>
-               <include name="databases.properties"/>
-               <include name="application.properties"/>
-               <include name="struts.xml"/>
-               <include name="shiro.ini"/>
-               <include name="mess.properties"/>
-          </fileset>    
-     <!---从resources/common目录，拷贝配置文件到classes目录 -->
-          <fileset dir="${resources.dir}/common">
-               <include name="key.ini"/>
-               <include name="struts.xml"/>
-          </fileset>              
-     </copy>
-    
-     <copy todir="${buildtype}-${release.inf.dir}">
-           <!---从resources/common目录，拷贝配置文件到WEB-INF目录 -->
-          <fileset dir="${resources.dir}/common">
-               <exclude name="**/.svn"/>
-               <include name="web.xml"/>
-          </fileset>   
-          <!---从resources/daily或者resources/formal(daily)目录下，拷贝配置文件到WEB-INF目录 -->
-          <fileset dir="${resources.dir}/${buildtype}">
-               <include name="beans.xml"/>
-          </fileset>     
-     </copy>
-    
-    
-     <copy todir="${buildtype}-${release.dir}">
-          <fileset dir="${webroot.dir}">
-               <exclude name="**/.svn"/>
-               <exclude name="**/${lib.dir}/**"/>
-               <exclude name="**/${webroot.class.dir}/**"/>
-          </fileset>
-     </copy>
-    
-     <copy todir="${buildtype}-${release.lib.dir}" flatten="true">
-          <fileset dir="${webroot.dir}/${lib.dir}">
-               <exclude name="**/.svn"/>
-               <include name="**/*.jar"/>
-          </fileset>
-     </copy>
-    
-    
-     <zip destfile="${buildtype}-${release.file}">
-          <fileset dir="${buildtype}-${release.dir}"/>
-     </zip>
-  </target>
+	<target name="clean" description="Remove all generated files.">
+		<delete dir="${release.dir}" />
+	</target>
 
+	<target name="initdir" description="mkdir">
+		<mkdir dir="${release.dir}" />
+		<mkdir dir="${release.classes.dir}" />
+	</target>
+
+	<target name="compile">
+		<javac encoding="utf-8" srcdir="${src.dir}" classpathref="compile.classpath" destdir="${webroot.class.dir}" />
+	</target>
+	
+	<target name="clean-build" depends="clean,initdir"/>
+	
+	<target name="build" depends="clean-build,compile"/>
 
 </project>
