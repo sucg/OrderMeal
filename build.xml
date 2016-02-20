@@ -24,7 +24,7 @@
 	</path>
 
 	<!-- 删除发布目录 -->
-	<target name="clean" description="Remove all generated files.">
+	<target name="cleanReleaseDir" description="Remove all generated files.">
 		<delete dir="${release.dir}" />
 	</target>
 
@@ -49,5 +49,5 @@
 	</target>
 
 	<!-- 总build步骤 -->
-	<target name="build" depends="clean,initReleaseDir,compile,makeWar" />
+	<target name="build" depends="cleanReleaseDir,initReleaseDir,compile,makeWar" />
 </project>
