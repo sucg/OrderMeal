@@ -45,7 +45,7 @@
 	
 	<!-- 制作成war包 -->
 	<target name="makeWar">
-		<war destfile="${release.dir}/OrderMeal.war" basedir="${release.dir}" />
+		<war destfile="${basedir}/OrderMeal.war" basedir="${release.dir}" />
 	</target>
 
 	<!-- 总build步骤 -->
