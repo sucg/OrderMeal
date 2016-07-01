@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.sun.org.apache.regexp.internal.recompile;
+
 @Entity
 @Table(name = "menu")
 public class Menu implements Serializable {
@@ -18,8 +20,13 @@ public class Menu implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
-	private String description;
+	private String name;
+	private String brief;
 	private float price;
+	private String type;
+	@ManyToOne(targetEntity = Restaurant.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "restaurantid")
+	private Restaurant restaurant;
 	@ManyToOne(targetEntity = Menu.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "pid")
 	private Menu menu;
@@ -29,12 +36,15 @@ public class Menu implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Menu(int id, String description, float price, Menu menu,
+	public Menu(int id, String name, String brief, float price, String type, Restaurant restaurant, Menu menu,
 			String remark) {
 		super();
 		this.id = id;
-		this.description = description;
+		this.name = name;
+		this.brief = brief;
 		this.price = price;
+		this.type = type;
+		this.restaurant = restaurant;
 		this.menu = menu;
 		this.remark = remark;
 	}
@@ -45,14 +55,6 @@ public class Menu implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public float getPrice() {
@@ -77,6 +79,38 @@ public class Menu implements Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getBrief() {
+		return brief;
+	}
+
+	public void setBrief(String brief) {
+		this.brief = brief;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 
 }

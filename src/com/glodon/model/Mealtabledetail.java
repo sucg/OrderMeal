@@ -12,39 +12,36 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "orderinfo")
-public class Orderinfo implements Serializable {
+@Table(name = "mealtabledetail")
+public class Mealtabledetail implements Serializable {
 
-	// close代表关闭，不可以编辑，open代表开放，可以编辑
-	//public static final int CLOSE = 0, OPEN = 1;
-	
 	@Id
 	@GeneratedValue
 	private int id;
-	private String description;
-	@ManyToOne(targetEntity = Menu.class, cascade = {CascadeType.MERGE})
+	@ManyToOne(targetEntity = Mealtable.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "mealtableid")
+	private Mealtable mealtable;
+	@ManyToOne(targetEntity = Menu.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "menuid")
 	private Menu menu;
-	@ManyToOne(targetEntity = Userinfo.class, cascade = {CascadeType.MERGE})
+	@ManyToOne(targetEntity = Userinfo.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "userinfoid")
 	private Userinfo userinfo;
-	private int state;
 	private int number;
-	private Date date;
+	private Date createdate;
 
-	public Orderinfo() {
+	public Mealtabledetail() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Orderinfo(int id, String description, Menu menu, Userinfo userinfo,
-			int state, int number) {
+
+	public Mealtabledetail(int id, Mealtable mealtable, Menu menu, Userinfo userinfo, int number, Date createdate) {
 		super();
 		this.id = id;
-		this.description = description;
+		this.mealtable = mealtable;
 		this.menu = menu;
 		this.userinfo = userinfo;
-		this.state = state;
 		this.number = number;
+		this.createdate = createdate;
 	}
 
 	public int getId() {
@@ -55,12 +52,12 @@ public class Orderinfo implements Serializable {
 		this.id = id;
 	}
 
-	public String getDescription() {
-		return description;
+	public Mealtable getMealtable() {
+		return mealtable;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setMealtable(Mealtable mealtable) {
+		this.mealtable = mealtable;
 	}
 
 	public Menu getMenu() {
@@ -79,14 +76,6 @@ public class Orderinfo implements Serializable {
 		this.userinfo = userinfo;
 	}
 
-	public int getState() {
-		return state;
-	}
-
-	public void setState(int state) {
-		this.state = state;
-	}
-
 	public int getNumber() {
 		return number;
 	}
@@ -95,13 +84,12 @@ public class Orderinfo implements Serializable {
 		this.number = number;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getCreatedate() {
+		return createdate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
 	}
-	
-	
+
 }

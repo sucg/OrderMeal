@@ -13,16 +13,16 @@ public class Userinfo implements Serializable{
 	
 	@Id
 	@GeneratedValue
-	private int id;
+	private Integer id;
 	private String name;
 	private String password;
-	private int role;
+	private Integer role;
 	
 	public Userinfo() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Userinfo(int id, String name, String password, int role) {
+	public Userinfo(int id, String name, String password, Integer role) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -30,11 +30,11 @@ public class Userinfo implements Serializable{
 		this.role = role;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -61,6 +61,5 @@ public class Userinfo implements Serializable{
 	public void setRole(int role) {
 		this.role = role;
 	}
-	
 	
 }
