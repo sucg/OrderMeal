@@ -6,11 +6,11 @@ import java.util.List;
 import com.glodon.model.Menu;
 import com.glodon.model.Page;
 import com.glodon.model.Userinfo;
+import com.glodon.utils.DBConsts;
+import com.sun.corba.se.impl.orbutil.closure.Constant;
 
 public class UserinfoDao extends BaseDao<Userinfo> {
 
-	final static String ptnUserinfo = "Userinfo";
-	
 	public UserinfoDao() {
 		System.out.println("UserinfoDao");
 	}
@@ -33,6 +33,6 @@ public class UserinfoDao extends BaseDao<Userinfo> {
 	
 	@Override
 	public String getEntityName() {
-		return ptnUserinfo;
+		return DBConsts.ptnUserinfo;
 	}
 }

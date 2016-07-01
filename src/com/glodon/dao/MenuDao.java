@@ -6,13 +6,11 @@ import java.util.List;
 import com.glodon.dao.MenuDao;
 import com.glodon.model.Menu;
 import com.glodon.model.Page;
+import com.glodon.utils.DBConsts;
 
 public class MenuDao extends BaseDao<Menu>{
 
-	final static String ptnMenu = "Menu";
-
 	public MenuDao() {
-		System.out.println("MenuDao");
 	}
 
 	public Menu findByID(Serializable id) {
@@ -33,7 +31,7 @@ public class MenuDao extends BaseDao<Menu>{
 
 	@Override
 	public String getEntityName() {
-		return ptnMenu;
+		return DBConsts.ptnMenu;
 	}
 
 }
